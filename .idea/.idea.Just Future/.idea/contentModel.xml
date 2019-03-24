@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\User\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\User\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Just Future.-655807087.00" t="ExcludeRecursive" />
+    <e p="D:\Unity\projects\Just Future" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Info" t="Include">
+          <e p="Emily.xml" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Bullet.cs" t="Include" />
+          <e p="Companions" t="Include">
+            <e p="Companion.cs" t="Include" />
+            <e p="CompanionInfo.cs" t="Include" />
+            <e p="CompanionsManager.cs" t="Include" />
+            <e p="Emily.cs" t="Include" />
+            <e p="Info.cs" t="Include" />
+            <e p="JoeSamson.cs" t="Include" />
+            <e p="LevelManager.cs" t="Include" />
+          </e>
+          <e p="Enemy.cs" t="Include" />
+          <e p="EnemyPlace.cs" t="Include" />
+          <e p="EnemySpawner.cs" t="Include" />
+          <e p="Fort.cs" t="Include" />
+          <e p="Game" t="Include">
+            <e p="Companion.cs" t="Include" />
+            <e p="EnemySO.cs" t="Include" />
+            <e p="LevelManager.cs" t="Include" />
+          </e>
+          <e p="GameManager.cs" t="Include" />
+          <e p="Gun.cs" t="Include" />
+          <e p="LevelProgressManager.cs" t="Include" />
+          <e p="LevelProgressSlider.cs" t="Include" />
+          <e p="LifeManager.cs" t="Include" />
+          <e p="MainCharacter.cs" t="Include" />
+          <e p="MainMenu" t="Include">
+            <e p="LevelManager.cs" t="Include" />
+          </e>
+          <e p="TechnologyManager.cs" t="Include" />
+          <e p="Utils" t="Include">
+            <e p="AspectRatio.cs" t="Include" />
+            <e p="Singleton.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Just Future.sln" t="IncludeFlat" />
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
