@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 50
-  fireSpeed: 500
+  fireSpeed: 1500
   shootSound: {fileID: 8300000, guid: 0bced08e44c137e4298d1a2cbe073b46, type: 3}
   bulletPool: {fileID: 1683917228}
 --- !u!212 &40167038
@@ -1706,7 +1706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44995847b83294d4ba984aaee834358b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1179291106782502, guid: 640c8d26cd5ae7e4c93d7ae0a5421272, type: 3}
+  bulletPool: {fileID: 1683917228}
   bulletSpeed: 30
   fireSpeed: 100
   damage: 10
@@ -3439,7 +3439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c615f2c6721d98a4a9a3c1f4afa2f1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1179291106782502, guid: 640c8d26cd5ae7e4c93d7ae0a5421272, type: 3}
+  bulletPool: {fileID: 1683917228}
   bulletSpeed: 30
   fireSpeed: 200
   damage: 50
@@ -4025,6 +4025,50 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!1 &1817403937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817403939}
+  - component: {fileID: 1817403938}
+  m_Layer: 0
+  m_Name: EnemyPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1817403938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817403937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a997ca265d0c42da9ec9af21965d99de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1526266535856004, guid: dd71d0b7c77cb8241adcfe5d0c652904, type: 3}
+--- !u!4 &1817403939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817403937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -78.61307, y: -473.27008, z: -1.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1820751415
 GameObject:
   m_ObjectHideFlags: 0
@@ -4692,6 +4736,7 @@ MonoBehaviour:
     type: 3}
   enemyCount: 243
   enemySo: {fileID: 11400000, guid: 2901e70dee8dd9c41b5a7a5cf8b6f424, type: 2}
+  enemyPool: {fileID: 1817403938}
 --- !u!4 &1973711422
 Transform:
   m_ObjectHideFlags: 0

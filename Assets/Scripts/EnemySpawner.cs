@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Game
@@ -15,6 +16,7 @@ namespace Game
         public GameObject enemyPrefab;
         public int enemyCount = 100;
         public EnemySo enemySo;
+        public EnemyPool enemyPool;
 
         // Use this for initialization
         void Start()
@@ -44,23 +46,27 @@ namespace Game
 
         private void createEnemy()
         {
-            float enemyHalfWidth = enemyPrefab.GetComponent<BoxCollider2D>().size.x / 2;
-            float enemyHeight = enemyPrefab.GetComponent<BoxCollider2D>().size.y;
-            float xCoords = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, 0)).x + enemyHalfWidth;
 
-            Vector3[] corners = new Vector3[4];
+            var newEnemy = enemyPool.GetEnemy();
+           
+            var enemyHalfWidth = newEnemy.GetComponent<BoxCollider2D>().size.x / 2;
+            var enemyHeight = newEnemy.GetComponent<BoxCollider2D>().size.y;
+            var xCoords = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, 0)).x + enemyHalfWidth;
+
+            var corners = new Vector3[4];
             enemyPlace.GetComponent<RectTransform>().GetWorldCorners(corners);
-            Vector3 leftBottomCorner = cam.WorldToScreenPoint(corners[0]);
-            Vector3 leftTopCorner = cam.WorldToScreenPoint(corners[1]);
+            var leftBottomCorner = cam.WorldToScreenPoint(corners[0]);
+            var leftTopCorner = cam.WorldToScreenPoint(corners[1]);
 
-            float yMin = cam.ScreenToWorldPoint(new Vector3(0, leftBottomCorner.y)).y;
-            float yMax = cam.ScreenToWorldPoint(new Vector3(0, leftTopCorner.y)).y - enemyHeight / 2;
+            var yMin = cam.ScreenToWorldPoint(new Vector3(0, leftBottomCorner.y)).y;
+            var yMax = cam.ScreenToWorldPoint(new Vector3(0, leftTopCorner.y)).y - enemyHeight / 2;
 
-            float yCoords = Random.Range(yMin, yMax);
+            var yCoords = Random.Range(yMin, yMax);
 
-            Vector3 spawnPosition = new Vector3(xCoords, yCoords);
-            
-            var newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.Euler(0, 0, 0), null);
+            var spawnPosition = new Vector3(xCoords, yCoords);
+
+            newEnemy.transform.position = spawnPosition;
+            newEnemy.SetActive(true);
             var enemy = newEnemy.GetComponent<Enemy>();
             enemy.Speed = enemySo.speed;
             enemy.Strength = enemySo.strength;

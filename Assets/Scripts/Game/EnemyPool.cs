@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Game
 {
-    public class BulletPool : MonoBehaviour
+    public class EnemyPool : MonoBehaviour
     {
-        public GameObject bullet;
-
-        public GameObject GetBullet()
+        public GameObject enemy;
+        
+        public GameObject GetEnemy()
         {
             
             for (var i = 0; i < transform.childCount; i++)
@@ -17,14 +17,14 @@ namespace Game
                 }
             }
 
-            var newBullet = Instantiate(bullet, transform);
+            var newBullet = Instantiate(enemy, transform);
             newBullet.SetActive(false);
             return newBullet;
         }
 
-        public void RemoveBullet(GameObject bulletObj)
+        public void RemoveEnemy(GameObject enemyObj)
         {
-            bulletObj.SetActive(false);
+            enemyObj.SetActive(false);
         }
     }
 }

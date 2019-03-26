@@ -20,6 +20,8 @@ namespace Game
         private LevelProgressManager levelProgressManager;
         private SpriteRenderer healthSpriteRenderer;
         private float defaultHealthSize;
+        private EnemyPool enemyPool;
+        
         public float defaultHealth;
 
         public float Speed
@@ -61,6 +63,7 @@ namespace Game
             healthSpriteRenderer = transform.Find("HealthBG/EhemyHealth").GetComponent<SpriteRenderer>();
             defaultHealthSize = healthSpriteRenderer.size.x;
             defaultHealth = health;
+            enemyPool = GameObject.Find("EnemyPool").GetComponent<EnemyPool>();
         }
 
         // Update is called once per frame
@@ -81,7 +84,7 @@ namespace Game
             healthSpriteRenderer.size = new Vector2(healthSize, healthSpriteRenderer.size.y);
             if (health <= 0)
             {
-                Destroy(gameObject);
+                enemyPool.RemoveEnemy(gameObject);
             }
         }
 

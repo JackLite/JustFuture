@@ -27,6 +27,7 @@
           <e p="Game" t="Include">
             <e p="BulletPool.cs" t="Include" />
             <e p="Companion.cs" t="Include" />
+            <e p="EnemyPool.cs" t="Include" />
             <e p="EnemySO.cs" t="Include" />
             <e p="LevelManager.cs" t="Include" />
           </e>
