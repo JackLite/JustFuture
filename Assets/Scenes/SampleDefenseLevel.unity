@@ -157,11 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea17134d9388ae84ca053c8dc69f2787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1179291106782502, guid: 640c8d26cd5ae7e4c93d7ae0a5421272, type: 3}
   bulletSpeed: 50
-  fireSpeed: 1000
-  targetPoint: {x: 0, y: 0}
+  fireSpeed: 500
   shootSound: {fileID: 8300000, guid: 0bced08e44c137e4298d1a2cbe073b46, type: 3}
+  bulletPool: {fileID: 1683917228}
 --- !u!212 &40167038
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3877,6 +3876,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1683917227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1683917229}
+  - component: {fileID: 1683917228}
+  m_Layer: 0
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1683917228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683917227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7a34b7bb8941e4994cfa2245b838dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1179291106782502, guid: 640c8d26cd5ae7e4c93d7ae0a5421272, type: 3}
+--- !u!4 &1683917229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683917227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -74.679276, y: -472.93692, z: -0.50689995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1708474984
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,7 +4049,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820751415}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: f99d8f0cdc0b1874e83753c97e0d5dcf,
     type: 2}
@@ -4670,6 +4713,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 625548297}
     m_Modifications:
+    - target: {fileID: 1896985775081840, guid: 5ebf6e21e2b93f142b3e7509bfe3aa5a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4694373605971316, guid: 5ebf6e21e2b93f142b3e7509bfe3aa5a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.32

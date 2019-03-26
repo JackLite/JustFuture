@@ -94,9 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119c867bf1ac3fc49b17df14671ee540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 0
   speed: 30
-  force: {x: 2.6482697, y: -0.14605713, z: 0}
   damage: 20
 --- !u!50 &50861066490391306
 Rigidbody2D:

@@ -15,19 +15,19 @@ namespace Game.Companions
         private AudioSource mainAudioSource;
         protected Info info;
 
-        public GameObject bullet;
+        public BulletPool bulletPool;
         public float bulletSpeed = 100f;
         public float fireSpeed = 100f;
         public float damage = 10f;
         public float accuracy = 100f;
         public AudioClip shootSound;
 
-        public enum type
+        public enum Type
         {
-            attack,
-            defense,
-            help,
-            resource
+            Attack,
+            Defense,
+            Help,
+            Resource
         }
 
         private void Start()
@@ -42,7 +42,7 @@ namespace Game.Companions
             {
                 if (nearestEnemy != null && !isBulletFire)
                 {
-                    StartCoroutine(fire());
+                    StartCoroutine(Fire());
                 }
                 else
                 {
@@ -70,13 +70,13 @@ namespace Game.Companions
             }
         }
 
-        IEnumerator fire()
+        private IEnumerator Fire()
         {
             realFireSpeed = 100f / fireSpeed;
             realAccuracy = (maxAccuracy - Mathf.Clamp(accuracy, minAccuracy, maxAccuracy)) / maxAccuracy;
 
             isBulletFire = true;
-
+            var bullet = bulletPool.GetBullet();
             Vector3 enemyPos = nearestEnemy.GetComponent<Transform>().position;
 
             Vector3 spawnPointPosWorld = transform.Find("Gun/BulletSpawnPoint").transform.position;
@@ -91,11 +91,10 @@ namespace Game.Companions
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             Vector3 bulletForceVector = new Vector2(distanceX, distanceY);
-
+            bullet.GetComponent<Transform>().position = spawnPointPosWorld;
+            bullet.GetComponent<Transform>().rotation = rotation;
             bullet.GetComponent<Bullet>().speed = bulletSpeed;
-            bullet.GetComponent<Bullet>().force = bulletForceVector;
-
-            Instantiate(bullet, spawnPointPosWorld, rotation, null);
+            bullet.GetComponent<Bullet>().Fire(bulletForceVector);
             mainAudioSource.PlayOneShot(shootSound);
             yield return new WaitForSeconds(realFireSpeed);
             isBulletFire = false;

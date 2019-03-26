@@ -25,6 +25,7 @@
           <e p="EnemySpawner.cs" t="Include" />
           <e p="Fort.cs" t="Include" />
           <e p="Game" t="Include">
+            <e p="BulletPool.cs" t="Include" />
             <e p="Companion.cs" t="Include" />
             <e p="EnemySO.cs" t="Include" />
             <e p="LevelManager.cs" t="Include" />

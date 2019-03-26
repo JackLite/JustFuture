@@ -10,21 +10,28 @@ namespace Game
 
         Camera cam;
         private Rigidbody2D rigid;
-        private bool active = false;
+        private BulletPool bulletPool;
 
-        public float angle;
         public float speed = 100f;
-        public Vector3 force = new Vector3(0, 0);
         public float damage = 14f;
+
+        private void Awake()
+        {
+            rigid = GetComponent<Rigidbody2D>();
+        }
 
         // Use this for initialization
         void Start()
         {
-            cam = GameObject.Find("MainCamera").GetComponent<Camera>();
-            angle = transform.rotation.eulerAngles.z;
+            cam = Camera.main;
+            bulletPool = GameObject.Find("BulletPool").GetComponent<BulletPool>();
             rigid = GetComponent<Rigidbody2D>();
-            rigid.AddForce(force.normalized * speed);
-            active = true;
+        }
+
+        public void Fire(Vector2 force)
+        {
+            gameObject.SetActive(true);
+            rigid.velocity = force.normalized * speed;
         }
 
         // Update is called once per frame
@@ -34,17 +41,19 @@ namespace Game
             bool isVisibleX = Screen.width >= viewPos.x;
             bool isVisibleY = Screen.height >= viewPos.y;
 
-            if (!isVisibleX || !isVisibleY)
-                Destroy(gameObject);
+            if (gameObject.activeSelf && (!isVisibleX || !isVisibleY))
+            {
+                bulletPool.RemoveBullet(gameObject);
+
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "Enemy" && active)
+            if (collision.gameObject.CompareTag("Enemy") && gameObject.activeSelf)
             {
-                active = false;
                 collision.gameObject.GetComponent<Enemy>().SetDamage(this);
-                Destroy(gameObject);
+                bulletPool.RemoveBullet(gameObject);
             }
         }
     }

@@ -18,13 +18,13 @@ namespace Game
         {
             if (!LevelManager.instance.isGamePaused())
             {
-                gunScript.startFire();
+                gunScript.StartFire();
             }
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            gunScript.stopFire();
+            gunScript.StopFire();
         }
     }
 }

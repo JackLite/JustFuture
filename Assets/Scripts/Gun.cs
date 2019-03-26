@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -7,15 +6,15 @@ namespace Game
     public class Gun : MonoBehaviour
     {
 
-        public GameObject bullet;
+        //public GameObject bullet;
         public float bulletSpeed = 100;
         public float fireSpeed = 100;
-        public Vector2 targetPoint;
         public AudioClip shootSound;
+        public BulletPool bulletPool;
 
-        private bool isBulletFire = false;
+        private bool isBulletFire;
         private float realFireSpeed;
-        private bool isNeedFire = false;
+        private bool isNeedFire;
         private AudioSource mainAudioSource;
 
         // Use this for initialization
@@ -25,51 +24,70 @@ namespace Game
             mainAudioSource = GameObject.Find("MainAudio").GetComponent<AudioSource>();
         }
 
-        public void startFire()
+        public void StartFire()
         {
             isNeedFire = true;
         }
 
-        public void stopFire()
+        public void StopFire()
         {
             isNeedFire = false;
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (isNeedFire && !isBulletFire)
             {
-                StartCoroutine(fire());
+                StartCoroutine(Fire());
             }
         }
 
-        IEnumerator fire()
+        private IEnumerator Fire()
         {
             isBulletFire = true;
 
-            Vector3 mousePosScreen = Input.mousePosition;
+            // получаем объект пули из пула
+            var bullet = bulletPool.GetBullet();
 
-            Vector3 spawnPointPosWorld = transform.Find("BulletSpawnPoint").transform.position;
-            Vector3 spawnPointPosScreen = Camera.main.WorldToScreenPoint(spawnPointPosWorld);
+            // угол относительно точки появления
+            var angle = GetAngle();
 
-            float distanceY = mousePosScreen.y - spawnPointPosScreen.y;
-            float distanceX = mousePosScreen.x - spawnPointPosScreen.x;
+            var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            float angle = Mathf.Atan(distanceY / distanceX);
-            angle = Mathf.Rad2Deg * angle;
-
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-            Vector3 bulletForceVector = new Vector2(distanceX, distanceY);
+            // расстояние до точки клика
+            Vector3 bulletForceVector = GetDistanceToPointer();
 
             bullet.GetComponent<Bullet>().speed = bulletSpeed;
-            bullet.GetComponent<Bullet>().force = bulletForceVector;
-
-            Instantiate(bullet, transform.position, rotation, null);
+            bullet.GetComponent<Transform>().position = transform.position;
+            bullet.GetComponent<Transform>().rotation = rotation;
+            
+            bullet.GetComponent<Bullet>().Fire(bulletForceVector);
+            
             mainAudioSource.PlayOneShot(shootSound);
             yield return new WaitForSeconds(realFireSpeed);
             isBulletFire = false;
+        }
+
+        private float GetAngle()
+        {
+
+            var distance = GetDistanceToPointer();
+            var angle = Mathf.Atan(distance.y / distance.x);
+            return Mathf.Rad2Deg * angle;
+        }
+
+        private Vector2 GetDistanceToPointer()
+        {
+            var mousePosScreen = Input.mousePosition;
+
+            var spawnPointPosWorld = transform.Find("BulletSpawnPoint").transform.position;
+            var spawnPointPosScreen = Camera.main.WorldToScreenPoint(spawnPointPosWorld);
+
+            var distanceY = mousePosScreen.y - spawnPointPosScreen.y;
+            var distanceX = mousePosScreen.x - spawnPointPosScreen.x;
+            
+            return new Vector2(distanceX, distanceY);
         }
     }
 }
