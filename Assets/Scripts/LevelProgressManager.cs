@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game
@@ -13,7 +11,7 @@ namespace Game
         private void Start()
         {
             levelProgressSlider = GameObject.Find("LevelProgressSlider").GetComponent<Slider>();
-            int enemyCount = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemyCount;
+            var enemyCount = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enemyCount;
             levelProgressSlider.maxValue = enemyCount;
             levelProgressSlider.value = enemyCount;
         }

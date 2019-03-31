@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Xml;
 
 namespace Companions
 {
@@ -11,21 +8,16 @@ namespace Companions
         public Game.Companions.Companion gameCompanion;
         public string description;
 
-        bool chosen;
-        Text nameText;
-        CompanionsManager companionsManager;
+        private bool chosen;
+        private Text nameText;
+
+        private CompanionsManager companionsManager;
         // Use this for initialization
         void Start()
         {
             nameText = transform.Find("CompanionNameText").GetComponent<Text>();
             companionsManager = GameObject.Find("CompanionsManager").GetComponent<CompanionsManager>();
-            nameText.text = gameCompanion.getInfo().name;
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            nameText.text = gameCompanion.GetInfo().name;
         }
 
         public void Choose()
@@ -33,17 +25,17 @@ namespace Companions
             chosen = !chosen;
             if (chosen)
             {
-                companionsManager.addCompanion(this);
+                companionsManager.AddCompanion(this);
                 nameText.fontStyle = FontStyle.Bold;
             }
             else
             {
-                companionsManager.removeCompanion(this);
+                companionsManager.RemoveCompanion(this);
                 nameText.fontStyle = FontStyle.Normal;
             }
         }
 
-        public Game.Companions.Companion getGameCompanion()
+        public Game.Companions.Companion GetGameCompanion()
         {
             return gameCompanion;
         }

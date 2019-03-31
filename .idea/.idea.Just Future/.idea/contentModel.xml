@@ -10,7 +10,6 @@
           <e p="Emily.xml" t="Include" />
         </e>
         <e p="Scripts" t="Include">
-          <e p="Bullet.cs" t="Include" />
           <e p="Companions" t="Include">
             <e p="Companion.cs" t="Include" />
             <e p="CompanionInfo.cs" t="Include" />
@@ -20,15 +19,16 @@
             <e p="JoeSamson.cs" t="Include" />
             <e p="LevelManager.cs" t="Include" />
           </e>
-          <e p="Enemy.cs" t="Include" />
           <e p="EnemyPlace.cs" t="Include" />
-          <e p="EnemySpawner.cs" t="Include" />
           <e p="Fort.cs" t="Include" />
           <e p="Game" t="Include">
+            <e p="Bullet.cs" t="Include" />
             <e p="BulletPool.cs" t="Include" />
             <e p="Companion.cs" t="Include" />
+            <e p="Enemy.cs" t="Include" />
             <e p="EnemyPool.cs" t="Include" />
             <e p="EnemySO.cs" t="Include" />
+            <e p="EnemySpawner.cs" t="Include" />
             <e p="LevelManager.cs" t="Include" />
           </e>
           <e p="GameManager.cs" t="Include" />

@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AspectRatio : MonoBehaviour {
 
     public float targetAspect;
 
-    void Start()
+    private void Start()
     {
-        float windowAspect = (float)Screen.width / (float)Screen.height;
-        float scaleHeight = windowAspect / targetAspect;
-        Camera camera = GetComponent<Camera>();
+        var windowAspect = Screen.width / Screen.height;
+        var scaleHeight = windowAspect / targetAspect;
+        var camera = Camera.main;
 
         if (scaleHeight < 1.0f)
         {

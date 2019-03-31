@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Game
@@ -8,12 +6,11 @@ namespace Game
     public class EnemySpawner : MonoBehaviour
     {
         private Camera cam;
-        private bool isEnemySpawn = false;
+        private bool isEnemySpawn;
         private GameObject enemyPlace;
         private int enemyLeft;
         // enemy per second
         public float spawnSpeed = 1f;
-        public GameObject enemyPrefab;
         public int enemyCount = 100;
         public EnemySo enemySo;
         public EnemyPool enemyPool;
@@ -27,28 +24,31 @@ namespace Game
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            if (!isEnemySpawn && enemyLeft > 0 && !LevelManager.instance.isGamePaused())
-            {
-                --enemyLeft;
-                StartCoroutine(spawnEnemy());
-            }
+            if (isEnemySpawn || enemyLeft <= 0 || LevelManager.Instance.IsGamePaused()) return;
+            
+            --enemyLeft;
+            StartCoroutine(SpawnEnemy());
         }
 
-        IEnumerator spawnEnemy()
+        private IEnumerator SpawnEnemy()
         {
             isEnemySpawn = true;
-            createEnemy();
+            CreateEnemy();
             yield return new WaitForSeconds(1 / spawnSpeed);
             isEnemySpawn = false;
         }
 
-        private void createEnemy()
+        private void CreateEnemy()
         {
-
             var newEnemy = enemyPool.GetEnemy();
-           
+            newEnemy.transform.position = CalculateEnemySpawnPosition(newEnemy);
+            InitializeEnemy(newEnemy);
+        }
+
+        private Vector3 CalculateEnemySpawnPosition(GameObject newEnemy)
+        {
             var enemyHalfWidth = newEnemy.GetComponent<BoxCollider2D>().size.x / 2;
             var enemyHeight = newEnemy.GetComponent<BoxCollider2D>().size.y;
             var xCoords = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, 0)).x + enemyHalfWidth;
@@ -63,10 +63,11 @@ namespace Game
 
             var yCoords = Random.Range(yMin, yMax);
 
-            var spawnPosition = new Vector3(xCoords, yCoords);
-
-            newEnemy.transform.position = spawnPosition;
-            newEnemy.SetActive(true);
+            return new Vector3(xCoords, yCoords);
+        }
+        
+        private void InitializeEnemy(GameObject newEnemy)
+        {
             var enemy = newEnemy.GetComponent<Enemy>();
             enemy.Speed = enemySo.speed;
             enemy.Strength = enemySo.strength;
@@ -74,6 +75,8 @@ namespace Game
             enemy.Technology = enemySo.technology;
             enemy.AttackSpeed = enemySo.attackSpeed;
             newEnemy.GetComponent<SpriteRenderer>().sprite = enemySo.sprite;
+
+            newEnemy.SetActive(true);
         }
     }
 }

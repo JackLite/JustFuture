@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Companions
@@ -38,7 +37,7 @@ namespace Game.Companions
 
         private void Update()
         {
-            if (!LevelManager.instance.isGamePaused())
+            if (!LevelManager.Instance.IsGamePaused())
             {
                 if (nearestEnemy != null && !isBulletFire)
                 {
@@ -51,7 +50,7 @@ namespace Game.Companions
             }
         }
 
-        abstract public Info getInfo();
+        abstract public Info GetInfo();
 
         private void FindNearestEnemy()
         {

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace MainMenu
@@ -9,7 +7,7 @@ namespace MainMenu
     {
         public void startGame()
         {
-            GameManager.instance.startGame();
+            GameManager.instance.StartGame();
         }
 
         public void goToCompanions()

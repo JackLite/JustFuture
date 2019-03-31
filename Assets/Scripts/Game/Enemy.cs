@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -13,8 +12,8 @@ namespace Game
         private float attackSpeed = 0.1f;
         private float technology = 3f;
 
-        private bool isAttacking = false;
-        private bool isAttackInProcess = false;
+        private bool isAttacking;
+        private bool isAttackInProcess;
         private LifeManager lifeManager;
         private TechnologyManager technologyManager;
         private LevelProgressManager levelProgressManager;
@@ -55,7 +54,7 @@ namespace Game
         }
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             lifeManager = GameObject.Find("LifeManager").GetComponent<LifeManager>();
             technologyManager = GameObject.Find("TechnologyManager").GetComponent<TechnologyManager>();
@@ -67,20 +66,20 @@ namespace Game
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            if (LevelManager.instance.isGamePaused())
+            if (LevelManager.Instance.IsGamePaused())
                 return;
             if (!isAttacking)
                 transform.Translate(new Vector3(-1f, 0) * speed * Time.deltaTime);
             else if (!isAttackInProcess)
-                StartCoroutine(attack());
+                StartCoroutine(Attack());
         }
 
         public void SetDamage(Bullet bulletScript)
         {
             health -= bulletScript.damage;
-            float healthSize = defaultHealthSize * health / defaultHealth;
+            var healthSize = defaultHealthSize * health / defaultHealth;
             healthSpriteRenderer.size = new Vector2(healthSize, healthSpriteRenderer.size.y);
             if (health <= 0)
             {
@@ -88,17 +87,17 @@ namespace Game
             }
         }
 
-        IEnumerator attack()
+        private IEnumerator Attack()
         {
             isAttackInProcess = true;
-            lifeManager.applyDamage(strength);
+            lifeManager.ApplyDamage(strength);
             yield return new WaitForSeconds(1 / attackSpeed);
             isAttackInProcess = false;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "Fort")
+            if (collision.gameObject.CompareTag("Fort"))
             {
                 isAttacking = true;
             }
@@ -107,7 +106,7 @@ namespace Game
         private void OnDestroy()
         {
             levelProgressManager.Decrease();
-            technologyManager.addTechnology(technology);
+            technologyManager.AddTechnology(technology);
         }
     }
 }

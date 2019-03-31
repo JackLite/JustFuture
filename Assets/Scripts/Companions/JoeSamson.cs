@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Game.Companions
+﻿namespace Game.Companions
 {
     public class JoeSamson : Companion
     {
         public float defense = 200;
 
-        public override Info getInfo()
+        public override Info GetInfo()
         {
             return new Info();
         }

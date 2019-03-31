@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
-
-        Camera cam;
+        private Camera cam;
         private Rigidbody2D rigid;
         private BulletPool bulletPool;
 
@@ -21,7 +18,7 @@ namespace Game
         }
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             cam = Camera.main;
             bulletPool = GameObject.Find("BulletPool").GetComponent<BulletPool>();
@@ -34,12 +31,11 @@ namespace Game
             rigid.velocity = force.normalized * speed;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            Vector3 viewPos = cam.WorldToScreenPoint(transform.position);
-            bool isVisibleX = Screen.width >= viewPos.x;
-            bool isVisibleY = Screen.height >= viewPos.y;
+            var viewPos = cam.WorldToScreenPoint(transform.position);
+            var isVisibleX = Screen.width >= viewPos.x;
+            var isVisibleY = Screen.height >= viewPos.y;
 
             if (gameObject.activeSelf && (!isVisibleX || !isVisibleY))
             {
@@ -50,11 +46,10 @@ namespace Game
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Enemy") && gameObject.activeSelf)
-            {
-                collision.gameObject.GetComponent<Enemy>().SetDamage(this);
-                bulletPool.RemoveBullet(gameObject);
-            }
+            if (!collision.gameObject.CompareTag("Enemy") || !gameObject.activeSelf) return;
+            
+            collision.gameObject.GetComponent<Enemy>().SetDamage(this);
+            bulletPool.RemoveBullet(gameObject);
         }
     }
 }

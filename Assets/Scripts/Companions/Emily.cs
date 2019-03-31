@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Xml;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using System.Linq;
 
 
@@ -13,7 +9,7 @@ namespace Game.Companions
         public new float damage = 200f;
         public new float fireSpeed = 150f;
 
-        public override Info getInfo()
+        public override Info GetInfo()
         {
             if (this.info.name == null)
             {

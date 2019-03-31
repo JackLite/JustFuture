@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Game
 {
     public class Gun : MonoBehaviour
     {
-
         //public GameObject bullet;
         public float bulletSpeed = 100;
         public float fireSpeed = 100;
@@ -22,25 +22,6 @@ namespace Game
         {
             realFireSpeed = 100f / fireSpeed;
             mainAudioSource = GameObject.Find("MainAudio").GetComponent<AudioSource>();
-        }
-
-        public void StartFire()
-        {
-            isNeedFire = true;
-        }
-
-        public void StopFire()
-        {
-            isNeedFire = false;
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-            if (isNeedFire && !isBulletFire)
-            {
-                StartCoroutine(Fire());
-            }
         }
 
         private IEnumerator Fire()
@@ -61,9 +42,9 @@ namespace Game
             bullet.GetComponent<Bullet>().speed = bulletSpeed;
             bullet.GetComponent<Transform>().position = transform.position;
             bullet.GetComponent<Transform>().rotation = rotation;
-            
+
             bullet.GetComponent<Bullet>().Fire(bulletForceVector);
-            
+
             mainAudioSource.PlayOneShot(shootSound);
             yield return new WaitForSeconds(realFireSpeed);
             isBulletFire = false;
@@ -71,10 +52,10 @@ namespace Game
 
         private float GetAngle()
         {
-
             var distance = GetDistanceToPointer();
             var angle = Mathf.Atan(distance.y / distance.x);
-            return Mathf.Rad2Deg * angle;
+            angle = Mathf.Rad2Deg * angle;
+            return angle;
         }
 
         private Vector2 GetDistanceToPointer()
@@ -86,8 +67,29 @@ namespace Game
 
             var distanceY = mousePosScreen.y - spawnPointPosScreen.y;
             var distanceX = mousePosScreen.x - spawnPointPosScreen.x;
-            
+
+            distanceX = Math.Abs(distanceX);
             return new Vector2(distanceX, distanceY);
+        }
+
+        private void FixedUpdate()
+        {
+            if (!Input.GetMouseButton(0)) return;
+
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var result = new RaycastHit2D[1];
+            Physics2D.GetRayIntersectionNonAlloc(ray, result);
+
+            foreach (var hit2D in result)
+            {
+                if (!hit2D.collider) continue;
+                if (!hit2D.collider.gameObject.CompareTag("Enemy Place")) continue;
+
+                if (!LevelManager.Instance.IsGamePaused() && !isBulletFire)
+                {
+                    StartCoroutine(Fire());
+                }
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,25 +28,25 @@ namespace Companions
 
         }
 
-        public void addCompanion(Companion companion)
+        public void AddCompanion(Companion companion)
         {
             companions.Add(companion);
             if(companions.Count == 2)
             {
-                deactivateCompanionsChoose();
+                DeactivateCompanionsChoose();
             }
         }
 
-        public void removeCompanion(Companion companion)
+        public void RemoveCompanion(Companion companion)
         {
             companions.Remove(companion);
             if (companions.Count < 2)
             {
-                activateCompanionsChoose();
+                ActivateCompanionsChoose();
             }
         }
 
-        public void deactivateCompanionsChoose()
+        public void DeactivateCompanionsChoose()
         {
             var companionsWrapperTransform = companionsWrapper.GetComponent<Transform>();
             for (int i = 0; i < companionsWrapperTransform.childCount; i++)
@@ -60,7 +59,7 @@ namespace Companions
             }
         }
 
-        public void activateCompanionsChoose()
+        public void ActivateCompanionsChoose()
         {
             var companionsWrapperTransform = companionsWrapper.GetComponent<Transform>();
             for (int i = 0; i < companionsWrapperTransform.childCount; i++)
@@ -69,10 +68,10 @@ namespace Companions
             }
         }
 
-        public void showCompanionInfo(Companion companion)
+        public void ShowCompanionInfo(Companion companion)
         {
-            companionInfo.transform.Find("Name").GetComponent<Text>().text = companion.getGameCompanion().getInfo().name;
-            companionInfo.transform.Find("Description").GetComponent<Text>().text = companion.getGameCompanion().getInfo().description;
+            companionInfo.transform.Find("Name").GetComponent<Text>().text = companion.GetGameCompanion().GetInfo().name;
+            companionInfo.transform.Find("Description").GetComponent<Text>().text = companion.GetGameCompanion().GetInfo().description;
             companionInfo.SetActive(true);
         }
     }

@@ -1639,7 +1639,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 315629363}
-        m_MethodName: resumeGame
+        m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3218,7 +3218,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 315629363}
-        m_MethodName: pauseGame
+        m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4093,7 +4093,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820751415}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: f99d8f0cdc0b1874e83753c97e0d5dcf,
     type: 2}
@@ -4732,8 +4732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnSpeed: 1.8
-  enemyPrefab: {fileID: 1526266535856004, guid: dd71d0b7c77cb8241adcfe5d0c652904,
-    type: 3}
   enemyCount: 243
   enemySo: {fileID: 11400000, guid: 2901e70dee8dd9c41b5a7a5cf8b6f424, type: 2}
   enemyPool: {fileID: 1817403938}

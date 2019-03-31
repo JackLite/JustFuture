@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 namespace Game
 {
-    public class EnemyPlace : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class EnemyPlace : MonoBehaviour
     {
         public Gun gunScript;
 
@@ -13,18 +10,7 @@ namespace Game
         {
             gunScript = GameObject.Find("MainGun").GetComponent<Gun>();
         }
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            if (!LevelManager.instance.isGamePaused())
-            {
-                gunScript.StartFire();
-            }
-        }
-
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            gunScript.StopFire();
+        
+        
         }
     }
-}

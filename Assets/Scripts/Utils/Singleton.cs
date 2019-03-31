@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+
 // Этот класс позволяет другим объектам ссылаться на единственный
 // общий объект. Используется в классах GameManager и InputManager.
 // Чтобы воспользоваться им, унаследуйте его, например:
@@ -14,7 +14,7 @@ where T : MonoBehaviour
     private static T _instance;
     // Метод доступа. В первом вызове настроит свойство _instance.
     // Если требуемый объект не найден, выводит сообщение об ошибке.
-    public static T instance
+    public static T Instance
     {
         get
         {

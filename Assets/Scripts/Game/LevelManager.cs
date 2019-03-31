@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game
 {
     public class LevelManager : MonoBehaviour
     {
         private static LevelManager _instance;
-        private bool paused = false;
+        private bool paused;
         private GameObject gameMenu;
 
-        public static LevelManager instance
+        public static LevelManager Instance
         {
             get
             {
@@ -28,18 +26,18 @@ namespace Game
             gameMenu.SetActive(false);
         }
 
-        public bool isGamePaused()
+        public bool IsGamePaused()
         {
             return paused;
         }
 
-        public void pauseGame()
+        public void PauseGame()
         {
             gameMenu.SetActive(true);
             paused = true;
         }
 
-        public void resumeGame()
+        public void ResumeGame()
         {
             gameMenu.SetActive(false);
             paused = false;
