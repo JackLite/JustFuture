@@ -18,7 +18,7 @@ namespace Game
         private AudioSource mainAudioSource;
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             realFireSpeed = 100f / fireSpeed;
             mainAudioSource = GameObject.Find("MainAudio").GetComponent<AudioSource>();

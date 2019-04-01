@@ -5,7 +5,6 @@ namespace Game
 {
     public class LevelProgressManager : MonoBehaviour
     {
-
         private Slider levelProgressSlider;
 
         private void Start()
