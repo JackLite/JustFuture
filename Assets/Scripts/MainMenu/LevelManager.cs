@@ -5,14 +5,14 @@ namespace MainMenu
 {
     public class LevelManager : MonoBehaviour
     {
-        public void startGame()
+        public void StartGame()
         {
             GameManager.instance.StartGame();
         }
 
-        public void goToCompanions()
+        public void GoToCompanions()
         {
-            SceneManager.LoadScene("Companions");
+            SceneManager.LoadScene("CompanionsMenu");
         }
     }
 }

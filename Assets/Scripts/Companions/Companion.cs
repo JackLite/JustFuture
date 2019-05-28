@@ -13,11 +13,11 @@ namespace Companions
 
         private CompanionsManager companionsManager;
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             nameText = transform.Find("CompanionNameText").GetComponent<Text>();
             companionsManager = GameObject.Find("CompanionsManager").GetComponent<CompanionsManager>();
-            nameText.text = gameCompanion.GetInfo().name;
+//            nameText.text = gameCompanion.GetInfo().name;
         }
 
         public void Choose()

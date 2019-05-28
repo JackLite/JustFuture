@@ -42,5 +42,10 @@ namespace Game
             gameMenu.SetActive(false);
             paused = false;
         }
+
+        public void ExitGame()
+        {
+            GameManager.instance.LoadMainMenu();
+        }
     }
 }

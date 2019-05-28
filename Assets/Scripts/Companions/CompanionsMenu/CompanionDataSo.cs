@@ -1,6 +1,8 @@
-namespace DefaultNamespace
+using UnityEngine;
+
+namespace Companions.CompanionsMenu
 {
-    public class CompanionDataSo
+    public class CompanionDataSo : ScriptableObject
     {
         
     }

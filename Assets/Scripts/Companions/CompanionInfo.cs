@@ -4,7 +4,6 @@ namespace Companions
 {
     public class CompanionInfo : MonoBehaviour
     {
-
         GameObject infoWindow;
 
         void Start()

@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 23126049e65665c40908cc80cc97e62a
   - enabled: 1
-    path: Assets/Scenes/Companions.unity
+    path: Assets/Scenes/CompanionsMenu.unity
     guid: d655fa9b16546354aad6f1f2116aea86
   - enabled: 1
     path: Assets/Scenes/SampleDefenseLevel.unity

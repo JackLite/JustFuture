@@ -14,6 +14,9 @@
             <e p="Companion.cs" t="Include" />
             <e p="CompanionInfo.cs" t="Include" />
             <e p="CompanionsManager.cs" t="Include" />
+            <e p="CompanionsMenu" t="Include">
+              <e p="CompanionDataSo.cs" t="Include" />
+            </e>
             <e p="Emily.cs" t="Include" />
             <e p="Info.cs" t="Include" />
             <e p="JoeSamson.cs" t="Include" />

@@ -70,8 +70,8 @@ namespace Companions
 
         public void ShowCompanionInfo(Companion companion)
         {
-            companionInfo.transform.Find("Name").GetComponent<Text>().text = companion.GetGameCompanion().GetInfo().name;
-            companionInfo.transform.Find("Description").GetComponent<Text>().text = companion.GetGameCompanion().GetInfo().description;
+//            companionInfo.transform.Find("Name").GetComponent<Text>().text = companion.GetGameCompanion().GetInfo().name;
+//            companionInfo.transform.Find("Description").GetComponent<Text>().text = companion.GetGameCompanion().GetInfo().description;
             companionInfo.SetActive(true);
         }
     }

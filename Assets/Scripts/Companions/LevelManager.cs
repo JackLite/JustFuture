@@ -4,7 +4,7 @@ namespace Companions
 {
     public class LevelManager : MonoBehaviour
     {
-        public void goToMainMenu()
+        public void GoToMainMenu()
         {
             GameManager.instance.LoadMainMenu();
         }
